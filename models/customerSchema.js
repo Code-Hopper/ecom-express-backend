@@ -20,6 +20,9 @@ let customer = mongoose.Schema({
     timestamp: {
         type: String
     },
+    token: {
+        type: String
+    },
     password: {
         type: String
     }
@@ -37,11 +40,11 @@ customer.pre("save", async function () {
 
         console.log("normal password is", this.password)
 
-        let salt = await bcrypt.genSalt(10) 
+        let salt = await bcrypt.genSalt(10)
 
         console.log(salt)
 
-        let hash = await bcrypt.hash(this.password,salt)
+        let hash = await bcrypt.hash(this.password, salt)
 
         this.password = hash
 
