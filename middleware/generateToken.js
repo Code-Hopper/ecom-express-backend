@@ -8,7 +8,7 @@ let generateToken = async (user) => {
     try{
 
         let options = {
-            expiresIn : "2hr"
+            expiresIn : "1hr"
         }
 
         let payload = {
@@ -28,7 +28,7 @@ let generateToken = async (user) => {
         let result = await newCustomer.updateOne({ email: user } , {$set: { token : token } } )
 
         console.log(result)
-w
+
         return token
 
     }catch(err){

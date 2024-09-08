@@ -59,7 +59,7 @@ let userLogin = async (req, res) => {
 
         console.log(token)
 
-        res.status(202).json({ message: "login was successful !", whoami: checkEntry.email , token: token })
+        res.status(202).json({ message: "login was successful !", whoami: checkEntry.email, token: token })
 
     } catch (err) {
         console.log("unable to login ! ", err)
@@ -67,4 +67,18 @@ let userLogin = async (req, res) => {
     }
 }
 
-export { userRegisteration, userLogin }
+let clientDashboard = async (req, res) => {
+    try {
+
+        let userData = req.userData
+        console.log("welcome ! ",req.userData.name)
+        console.log("dashboard access granted !")
+
+       res.status(200).json({message:`Welcome ! ${userData.name}.` , userData }) 
+
+    } catch (err) {
+        res.status(400).json({message:"some error validating user !" , err})
+    }
+}
+
+export { userRegisteration, userLogin, clientDashboard }
